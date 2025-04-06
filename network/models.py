@@ -61,7 +61,6 @@ class Network(models.Model):
         verbose_name = "Сеть"
         verbose_name_plural = "Сети"
 
-
     def save(self, *args, **kwargs):
         """Автоматически устанавливает уровень иерархии перед сохранением"""
         if self.supplier:
@@ -71,4 +70,6 @@ class Network(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return f"{self.name} (Уровень: {self.get_level_display()}), Поставщик: {self.supplier.name if self.supplier else 'Нет'}"
+        return (f"{self.name} (Уровень: {self.get_level_display()}), "
+                f"Поставщик: {self.supplier.name if self.supplier else 'Нет'}"
+                )
